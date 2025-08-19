@@ -10,6 +10,12 @@ load_dotenv()
 
 class Settings(BaseSettings):
     database_url: str = Field(env="DATABASE_URL")
+    secret_key: str = Field(..., env='SECRET_KEY')
+    secret_algorithm: str = Field(..., env='SECRET_ALGORITHM')
+    access_token_expire_minutes: int = Field(..., env='ACCESS_TOKEN_EXPIRE_MINUTES')
+    smtp_email_address: str = Field(..., env='SMTP_EMAIL_ADDRESS')
+    smtp_email_password: str = Field(..., env='SMTP_EMAIL_PASSWORD')
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

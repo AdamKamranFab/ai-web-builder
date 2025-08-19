@@ -49,14 +49,12 @@ class Users(BaseModel):
     stack = sa.Column(sa.String(), nullable=True)
     image_url = sa.Column(sa.String(), nullable=True)
     experience = sa.Column(sa.String(), nullable=True)
-
-
-class UserKeys(BaseModel):
-    __tablename__ = 'user_keys'
-
-    id = sa.Column(sa.Integer(), nullable=False, autoincrement=True, primary_key=True)
-    user_id = sa.Column(sa.Integer(), sa.ForeignKey('users.id'), nullable=False)
-    otp = sa.Column(sa.String(), nullable=False)
+    phone = sa.Column(sa.String(), nullable=True)
+    tech_stack = sa.Column(sa.String(), nullable=True)
+    github_status = sa.Column(sa.String(), nullable=True)
+    joined_on = sa.Column(sa.DateTime(), nullable=True)
+    active_projects = sa.Column(sa.Integer(), nullable=True)
+    otp = sa.Column(sa.String(), nullable=True)
 
 
 class Project(BaseModel):
@@ -102,17 +100,6 @@ class ServicePlans(BaseModel):
     revisions = sa.Column(sa.String(), nullable=False)
     description = sa.Column(sa.String(), nullable=False)
     features = sa.Column(sa.String(), nullable=False)
-
-
-class Developers(BaseModel):
-    __tablename__ = 'developers'
-
-    id = sa.Column(sa.Integer(), autoincrement=True, nullable=False, primary_key=True)
-    name = sa.Column(sa.String(), nullable=False)
-    tech_stack = sa.Column(sa.String(), nullable=False)
-    github_status = sa.Column(sa.String(), nullable=False)
-    joined_on = sa.Column(sa.DateTime(), nullable=False)
-    active_projects = sa.Column(sa.Integer(), nullable=False)
 
 
 class Subscriptions(BaseModel):
