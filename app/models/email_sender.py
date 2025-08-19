@@ -69,12 +69,8 @@ def send_password_reset_email(email: str, otp: str):
             <h2>Password Reset Request</h2>
             <p>We received a request to reset your password. Please use the following code to proceed:</p>
             <p style="font-size: 24px; font-weight: bold; letter-spacing: 4px; color: #e76f51;">
-                {otp}
-            </p>
-            <p>This code will expire in 10 minutes. If you did not request a password reset, please ignore this email.</p>
-          </body>
-        </html>
-        """
+                {otp} </p> <p>This code will expire in 10 minutes. If you did not request a password reset, 
+                please ignore this email.</p> </body> </html>"""
 
         message.attach(MIMEText(plain_text, "plain"))
         message.attach(MIMEText(body, "html"))
