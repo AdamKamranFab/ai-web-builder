@@ -15,6 +15,8 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = Field(..., env='ACCESS_TOKEN_EXPIRE_MINUTES')
     smtp_email_address: str = Field(..., env='SMTP_EMAIL_ADDRESS')
     smtp_email_password: str = Field(..., env='SMTP_EMAIL_PASSWORD')
+    postgres_db: str = Field(..., env='POSTGRES_DB')
+    postgres_password: str = Field(..., env='POSTGRES_PASSWORD')
 
     class Config:
         env_file = ".env"

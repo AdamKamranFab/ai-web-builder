@@ -46,9 +46,10 @@ def send_verification_email(email: str, otp: str):
         raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
 
 
-def verify_otp_from_mail(otp: str, db: Session):
+def verify_otp_from_mail(user_id, otp: str, db: Session):
     otp_current = bool(db.query(Users).filter(
-        Users.otp == otp
+        Users.otp == otp,
+        Users.id == user_id
     ).first())
 
     return otp_current
@@ -83,9 +84,10 @@ def send_password_reset_email(email: str, otp: str):
         raise HTTPException(status_code=500, detail=f"Failed to send password reset email: {str(e)}")
 
 
-def verify_otp_for_reset(otp: str, db: Session):
+def verify_otp_for_reset(user_id, otp: str, db: Session):
     return bool(
         db.query(Users).filter(
-            Users.otp == otp
+            Users.otp == otp,
+            Users.id == user_id
         ).first()
     )

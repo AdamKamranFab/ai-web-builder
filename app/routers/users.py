@@ -30,13 +30,14 @@ async def login(
         return e
 
 
-@users.get('/verify-token')
+@users.get('/verify-token/{user_id}')
 async def verify_otp(
         otp: str,
+        user_id: str,
         db: Session = Depends(get_session)
 ):
     try:
-        return verify_otp_from_mail(otp, db)
+        return verify_otp_from_mail(user_id, otp, db)
     except BaseException as e:
         raise e
 
@@ -63,12 +64,13 @@ async def reset_pwd(
         raise e
 
 
-@users.get('/verify-reset-otp')
+@users.get('/verify-reset-otp/{user_id}')
 async def reset_otp_verify(
         otp: str,
+        user_id: int,
         db: Session = Depends(get_session)
 ):
     try:
-        return verify_otp_for_reset(otp, db)
+        return verify_otp_for_reset(user_id, otp, db)
     except BaseException as e:
         raise e

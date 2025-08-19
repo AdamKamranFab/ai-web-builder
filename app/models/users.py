@@ -25,6 +25,9 @@ class UserSignup(UserBase):
     password: str
 
     def signup(self, db: Session):
+        current_user = UserBase.get_user_by_email(self.email, db)
+        if current_user:
+            raise HTTPException(status_code=409, detail='User already exists!')
         otp = generate_otp(6)
         self.password = hash_password(self.password)
 
