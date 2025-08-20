@@ -13,6 +13,9 @@ class AppSettings(BaseSettings):
     smtp_email_password: str = Field(..., env='SMTP_EMAIL_PASSWORD')
     postgres_db: str = Field(..., env='POSTGRES_DB')
     postgres_password: str = Field(..., env='POSTGRES_PASSWORD')
+    google_client_id: str = Field(..., env='GOOGLE_CLIENT_ID')
+    google_client_secret: str = Field(..., env='GOOGLE_CLIENT_SECRET')
+    front_end_live_url: str = Field(..., env='FRONT_END_LIVE_URL')
 
 
 settings = AppSettings()

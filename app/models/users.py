@@ -46,7 +46,7 @@ class UserSignup(UserBase):
 
         send_verification_email(self.email, otp)
 
-        return {"message": "new user created successfully!"}
+        return new_user
 
 
 class UserResponse(UserBase):

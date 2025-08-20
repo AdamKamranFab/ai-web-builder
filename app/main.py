@@ -1,9 +1,19 @@
 from fastapi import FastAPI
 from app.routers.users import users
+from app.routers.sso import sso_router
 from fastapi.middleware.cors import CORSMiddleware
+from app.settings import settings
+from starlette.middleware.sessions import SessionMiddleware
 
 
 app = FastAPI()
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=settings.secret_key,
+    https_only=True,
+    same_site="none"
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,3 +24,5 @@ app.add_middleware(
 )
 
 app.include_router(users)
+app.include_router(sso_router)
+
