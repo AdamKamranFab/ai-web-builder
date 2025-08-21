@@ -36,7 +36,11 @@ async def callback_google(
             first_name=user.get('given_name') if user.get('given_name') else '',
             last_name=user.get('family_name') if user.get('family_name') else '',
             phone='',
-            password='sso-pass'
+            password='sso-pass',
+            stack='',
+            experience='',
+            bio='',
+            image_url=''
         )
         application_user = GoogleOAuth.create_user_after_callback(payload, db)
 
