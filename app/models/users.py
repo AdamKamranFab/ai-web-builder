@@ -13,6 +13,10 @@ class UserBase(BaseModel):
     first_name: str
     last_name: str
     phone: str
+    experience: str
+    stack: str
+    bio: str
+    image_url: str
 
     @staticmethod
     def get_user_by_email(email: str, db: Session):
@@ -37,7 +41,11 @@ class UserSignup(UserBase):
             first_name=self.first_name,
             last_name=self.last_name,
             phone=self.phone,
-            otp=otp
+            otp=otp,
+            stack=self.stack,
+            experience=self.experience,
+            bio=self.bio,
+            image_url=self.image_url
         )
 
         db.add(new_user)
