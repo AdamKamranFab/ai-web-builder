@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Checkout repository (optional, but good practice)
+        uses: actions/checkout@v3
+
+      - name: Setup SSH key and deploy
+        run: |
+          echo "$SSH_PRIVATE_KEY" > private_key
+          chmod 600 private_key
+          ssh -tt -o StrictHostKeyChecking=no -i private_key ubuntu@18.223.194.183 "
+            cd ~/ai-web-builder &&
+            git pull &&
+            docker compose down &&
+            docker compose up --build -d
+          "
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
