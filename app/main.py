@@ -4,6 +4,7 @@ from app.routers.sso import sso_router
 from fastapi.middleware.cors import CORSMiddleware
 from app.settings import settings
 from starlette.middleware.sessions import SessionMiddleware
+from app.routers.stripe import stripe_router
 
 
 app = FastAPI()
@@ -25,4 +26,6 @@ app.add_middleware(
 
 app.include_router(users)
 app.include_router(sso_router)
+app.include_router(stripe_router)
+
 

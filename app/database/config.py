@@ -20,6 +20,8 @@ class Settings(BaseSettings):
     google_client_id: str = Field(..., env='GOOGLE_CLIENT_ID')
     google_client_secret: str = Field(..., env='GOOGLE_CLIENT_SECRET')
     front_end_live_url: str = Field(..., env='FRONT_END_LIVE_URL')
+    stripe_secret_key: str = Field(..., env='STRIPE_SECRET_KEY')
+    stripe_publishable_key: str = Field(..., env='STRIPE_PUBLISHABLE_KEY')
 
     class Config:
         env_file = ".env"
